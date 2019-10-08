@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
+import unicorn from '../images/unicorn.svg'
 import Navlinks from './Navlinks'
 
 const Navbar = styled.nav`
@@ -12,6 +14,7 @@ const Navbar = styled.nav`
   align-items: center;
   height: 15vh;
   padding: 0 1rem;
+  box-shadow:  0 10px 5px 0px rgba(0,0,0,0.75);
 
   .navbar-left > .nav-links {
     display: flex;
@@ -25,11 +28,28 @@ const Navbar = styled.nav`
   .nav-item {
     font-size: 2rem;
     font-color: white;
-    display: flex;
-    align-items: center;
+    position: relative;
     img {
+      display: flex;
+      align-items: center;
       height: 12vh;
     }
+    &:hover:after {
+      content: '';
+      display: block;
+      height: 3px;
+      width: 125%;
+      background: white;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &:not(.nav-header) {
+      @media screen and (max-width: 768px) {
+        display:none;
+    }
+    }
+
   }
 `
 
@@ -67,17 +87,23 @@ const NavButton = styled.div`
   }
 `
 
-const DesktopNavbar = () => {
-  const [mobileMenuClicked, setMobileMenuClicked] = useState(false)
-  const handleMobileMenuClick = () => {
-    setMobileMenuClicked(!mobileMenuClicked)
+const DesktopNavbar = ({ mobileButtonClicked, onMobileButtonClick }) => {
+  const handleButtonClick = () => {
+    onMobileButtonClick()
   }
   return (
     <Navbar >
       <div className="navbar-left">
-        <Navlinks/>
+        <ul className="nav-links">
+          <li>
+            <Link to="/" className="nav-item nav-header">
+              <img src={unicorn} alt="Home Brand" />
+            </Link>
+          </li>
+          <Navlinks/>
+        </ul>
       </div>
-      <NavButton className="navbar-right" isButtonClicked={mobileMenuClicked} onClick={handleMobileMenuClick}>
+      <NavButton className="navbar-right" isButtonClicked={mobileButtonClicked} onClick={handleButtonClick}>
         <div className="navbar-hamburger">
           <div></div>
         </div>
