@@ -1,13 +1,13 @@
 import React from 'react'
 
-import DesktopNavbar from './Components/DesktopNavbar'
+import Navbar from './Components/Navbar'
 
 function App() {
   return (
-    <div>
-      <DesktopNavbar />
-    </div>
-  );
+    <>
+      <Navbar />
+    </>
+  )
 }
 
 export default App
