@@ -33,3 +33,9 @@ a:visited {
   text-decoration: none;
   color: white;
 }
+
+#root > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
