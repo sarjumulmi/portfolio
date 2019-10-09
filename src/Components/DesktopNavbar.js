@@ -14,17 +14,26 @@ const Navbar = styled.nav`
   align-items: center;
   height: 15vh;
   padding: 0 1rem;
-  box-shadow:  0 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow:  0 10px 10px 0px rgba(0,0,0,0.75);
 
   .navbar-left > .nav-links {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+
     > li {
       margin: 0 2rem;
     }
   }
+
+  .nav-links > li {
+    transition: all .3s ease;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
   .nav-item {
     font-size: 2rem;
     font-color: white;
@@ -34,6 +43,7 @@ const Navbar = styled.nav`
       align-items: center;
       height: 12vh;
     }
+
     &:hover:after {
       content: '';
       display: block;
@@ -53,7 +63,8 @@ const Navbar = styled.nav`
   }
 `
 
-const NavButton = styled.div`
+const MobileNavButton = styled.div`
+  cursor: pointer;
   .navbar-hamburger {
     margin: 1em;
     width: 40px;
@@ -70,15 +81,15 @@ const NavButton = styled.div`
   }
 
   .navbar-hamburger:before {
-    transform: ${props => props.isButtonClicked ? 'translateY(12px) rotate(135deg)' : 'translateY(0) rotate(0)'};
+    transform: ${props => props.showMobileMenu ? 'translateY(12px) rotate(135deg)' : 'translateY(0) rotate(0)'};
   }
 
   .navbar-hamburger:after {
-    transform: ${props => props.isButtonClicked ? 'translateY(-12px) rotate(-135deg)' : 'translateY(0) rotate(0)'};
+    transform: ${props => props.showMobileMenu ? 'translateY(-12px) rotate(-135deg)' : 'translateY(0) rotate(0)'};
   }
 
   .navbar-hamburger div {
-    transform: ${props => props.isButtonClicked ? 'scale(0)' : 'scale(1)'};
+    transform: ${props => props.showMobileMenu ? 'scale(0)' : 'scale(1)'};
   }
   display: none;
 
@@ -87,10 +98,7 @@ const NavButton = styled.div`
   }
 `
 
-const DesktopNavbar = ({ mobileButtonClicked, onMobileButtonClick }) => {
-  const handleButtonClick = () => {
-    onMobileButtonClick()
-  }
+const DesktopNavbar = ({ showMobileMenu, onMobileButtonClick }) => {
   return (
     <Navbar >
       <div className="navbar-left">
@@ -103,11 +111,11 @@ const DesktopNavbar = ({ mobileButtonClicked, onMobileButtonClick }) => {
           <Navlinks/>
         </ul>
       </div>
-      <NavButton className="navbar-right" isButtonClicked={mobileButtonClicked} onClick={handleButtonClick}>
+      <MobileNavButton className="navbar-right" showMobileMenu={showMobileMenu} onClick={onMobileButtonClick}>
         <div className="navbar-hamburger">
           <div></div>
         </div>
-      </NavButton>
+      </MobileNavButton>
     </Navbar>
   )
 }

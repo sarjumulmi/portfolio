@@ -12,18 +12,15 @@ const NavbarContainer = styled.div`
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
-  const [mobileButtonClicked, setMobileButtonClicked] = useState(false)
 
   const handleMobileButtonClick = () => {
     setShowMobileMenu(!showMobileMenu)
-    setMobileButtonClicked(!mobileButtonClicked)
   }
 
   const autoHideMobileNav = useCallback(() => {
     const screenWidth = window.innerWidth
     if (showMobileMenu && screenWidth > 768) {
       setShowMobileMenu(false)
-      setMobileButtonClicked(false)
     }
   }, [showMobileMenu])
 
@@ -36,7 +33,7 @@ const Navbar = () => {
 
   return(
     <NavbarContainer>
-      <DesktopNavbar mobileButtonClicked={mobileButtonClicked} onMobileButtonClick={handleMobileButtonClick}/>
+      <DesktopNavbar showMobileMenu={showMobileMenu} onMobileButtonClick={handleMobileButtonClick}/>
       <MobileNavbar showMobileMenu={showMobileMenu}/>
     </NavbarContainer>
   )
