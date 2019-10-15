@@ -15,6 +15,33 @@ const Navbar = styled.nav`
   height: 15vh;
   padding: 0 1rem;
   box-shadow:  0 10px 10px 0px rgba(0,0,0,0.75);
+  margin-bottom: ${props => props.showMobileMenu ? '0' : '1rem'};
+  transition: ${props => props.showMobileMenu ? '' : 'margin-bottom .1s ease .4s'};
+  /** for hover background effect   **/
+  .nav-item-wrapper {
+    padding: .5rem 1.5rem;
+    display: block;
+    position: relative;
+    &:after {
+      content: '';
+      background: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      transition: all 1s;
+      border-radius: 30px;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+    &:hover:after {
+      transform: scaleX(1.3) scaleY(1.1);
+      opacity: 0;
+    }
+  }
 
   .navbar-left > .nav-links {
     display: flex;
@@ -23,10 +50,10 @@ const Navbar = styled.nav`
     align-items: center;
 
     > li {
-      margin: 0 2rem;
+      margin: 0 1rem;
     }
   }
-
+  /** for hover scale font   **/
   .nav-links > li {
     transition: all .3s ease;
     &:hover {
@@ -43,12 +70,12 @@ const Navbar = styled.nav`
       align-items: center;
       height: 12vh;
     }
-
+    /** for hover underline effect   **/
     &:hover:after {
       content: '';
       display: block;
       height: 3px;
-      width: 125%;
+      width: 120%;
       background: white;
       position: absolute;
       left: 50%;
@@ -56,17 +83,17 @@ const Navbar = styled.nav`
     }
     &:not(.nav-header) {
       @media screen and (max-width: 768px) {
-        display:none;
+        display: none;
+        font-size: 10px;
+      }
     }
-    }
-
   }
 `
 
 const MobileNavButton = styled.div`
   cursor: pointer;
   .navbar-hamburger {
-    margin: 1em;
+    margin-right: 1em;
     width: 40px;
   }
 
@@ -94,13 +121,13 @@ const MobileNavButton = styled.div`
   display: none;
 
   @media screen and (max-width: 768px) {
-    display:block;
+    display: block;
   }
 `
 
 const DesktopNavbar = ({ showMobileMenu, onMobileButtonClick }) => {
   return (
-    <Navbar >
+    <Navbar showMobileMenu={showMobileMenu} >
       <div className="navbar-left">
         <ul className="nav-links">
           <li>

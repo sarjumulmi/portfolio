@@ -10,11 +10,11 @@ import About from './Pages/About'
 import Contact from './Pages/Contact'
 
 const Container = styled.div`
-  padding: 40px 0 20px 0;
-  margin: 0 5vw;
+  padding: 10px 0 20px 0;
+  margin: 2rem 5vw;
   width: 90vw;
   position: fixed;
-  top: 15vh;
+  top: calc(15vh);
   display: flex;
   justify-content: center;
 `
@@ -27,7 +27,7 @@ function App() {
     leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
   })
   return transitions.map(({ item, props, key }) => (
-    <animated.div key={key} style={props}>
+    <animated.div key={key} style={props} className="animated">
       <Navbar />
       <Container className="container">
         <Switch location={item}>
