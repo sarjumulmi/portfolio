@@ -12,82 +12,61 @@ const Navbar = styled.nav`
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  height: 15vh;
-  padding: 0 1rem;
+  height: 10vh;
+  padding: 0 .5rem;
   box-shadow:  0 10px 10px 0px rgba(0,0,0,0.75);
-  margin-bottom: ${props => props.showMobileMenu ? '0' : '1rem'};
-  transition: ${props => props.showMobileMenu ? '' : 'margin-bottom .1s ease .4s'};
-  /** for hover background effect   **/
-  .nav-item-wrapper {
-    padding: .5rem 1.5rem;
-    display: block;
-    position: relative;
-    &:after {
-      content: '';
-      background: white;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      z-index: -1;
-      transition: all 1s;
-      border-radius: 30px;
-      @media screen and (max-width: 768px) {
-        display: none;
-      }
-    }
-    &:hover:after {
-      transform: scaleX(1.3) scaleY(1.1);
-      opacity: 0;
-    }
+  /** prevent box shadow being cut-off by adding bottom margin & transition to no-margin after animation**/
+  margin-bottom: ${props => props.showMobileMenu ? '0' : '18px'};
+  transition: ${props => props.showMobileMenu ? '' : 'margin-bottom .1s ease-in .4s'};
   }
 
-  .navbar-left > .nav-links {
+  .nav-links {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
     align-items: center;
-
-    > li {
-      margin: 0 1rem;
-    }
-  }
-  /** for hover scale font   **/
-  .nav-links > li {
-    transition: all .3s ease;
-    &:hover {
-      transform: scale(1.2);
-    }
-  }
-
-  .nav-item {
-    font-size: 2rem;
-    font-color: white;
-    position: relative;
-    img {
-      display: flex;
-      align-items: center;
-      height: 12vh;
-    }
-    /** for hover underline effect   **/
-    &:hover:after {
-      content: '';
-      display: block;
-      height: 3px;
-      width: 120%;
-      background: white;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    &:not(.nav-header) {
-      @media screen and (max-width: 768px) {
-        display: none;
-        font-size: 10px;
+    .nav-item {
+      transition: all 0.3s ease-in;
+      margin-right: 1rem;
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        border-radius: 50%;
+        z-index: -1;
+        transition: all 0.3s ease-in;
+      }
+      &:hover {
+        transform: scale(1.2)
+      }
+      &:hover:after {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+      a {
+        display: flex;
+        align-items: center;
       }
     }
   }
+
+  img {
+    height: 6vh;
+  }
+  .nav-header img {
+    height: 8vh;
+  }
+
+  .nav-item:not(:first-child) {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
 `
 
 const MobileNavButton = styled.div`
@@ -130,8 +109,8 @@ const DesktopNavbar = ({ showMobileMenu, onMobileButtonClick }) => {
     <Navbar showMobileMenu={showMobileMenu} >
       <div className="navbar-left">
         <ul className="nav-links">
-          <li>
-            <Link to="/" className="nav-item nav-header">
+          <li className="nav-item">
+            <Link to="/" className="nav-header">
               <img src={unicorn} alt="Home Brand" />
             </Link>
           </li>
