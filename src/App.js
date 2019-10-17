@@ -31,9 +31,9 @@ function App() {
       <Navbar />
       <Container className="container">
         <Switch location={item}>
-          <Route exact path="/" render={() => <Home />}/>
-          <Route path="/about" render={() => <About />}/>
-          <Route path="/contact" render={() => <Contact />}/>
+          <Route exact path="/portfolio" render={() => <Home />}/>
+          <Route path="/portfolio/about" render={() => <About />}/>
+          <Route path="/portfolio/contact" render={() => <Contact />}/>
         </Switch>
       </Container>
     </animated.div>
