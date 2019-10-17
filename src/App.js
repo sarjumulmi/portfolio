@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import { useTransition, animated } from 'react-spring'
 
@@ -31,6 +31,7 @@ function App() {
       <Navbar />
       <Container className="container">
         <Switch location={item}>
+          <Route exact path="/" render={() => <Redirect to="/portfolio" />}/>
           <Route exact path="/portfolio" render={() => <Home />}/>
           <Route path="/portfolio/about" render={() => <About />}/>
           <Route path="/portfolio/contact" render={() => <Contact />}/>

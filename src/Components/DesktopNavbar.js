@@ -110,7 +110,7 @@ const DesktopNavbar = ({ showMobileMenu, onMobileButtonClick }) => {
       <div className="navbar-left">
         <ul className="nav-links">
           <li className="nav-item">
-            <Link to="/portoflio" className="nav-header">
+            <Link to="/portfolio" className="nav-header">
               <img src={unicorn} alt="Home Brand" />
             </Link>
           </li>

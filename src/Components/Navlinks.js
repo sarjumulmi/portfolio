@@ -10,22 +10,22 @@ import instagram from '../images/instagram.svg'
 const Navlinks = () => (
   <>
     <li className="nav-item">
-      <Link to="/portoflio/about" >
+      <Link to="/portfolio/about" >
         <img src={github} alt="Gitbhub" />
       </Link>
     </li>
     <li className="nav-item ">
-      <Link to="/portoflio/contact" >
+      <Link to="/portfolio/contact" >
         <img src={linkedin} alt="Linkedin" />
       </Link>
     </li>
     <li className="nav-item">
-      <Link to="//portoflioabout" >
+      <Link to="/portfolio/about" >
         <img src={facebook} alt="Facebook" />
       </Link>
     </li>
     <li className="nav-item">
-      <Link to="/portoflio/contact" >
+      <Link to="/portfolio/contact" >
         <img src={instagram} alt="Instagram" />
       </Link>
     </li>
