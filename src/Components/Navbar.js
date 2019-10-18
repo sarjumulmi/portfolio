@@ -32,7 +32,7 @@ const Navbar = () => {
   }, [autoHideMobileNav])
 
   return(
-    <NavbarContainer>
+    <NavbarContainer >
       <DesktopNavbar showMobileMenu={showMobileMenu} onMobileButtonClick={handleMobileButtonClick}/>
       <MobileNavbar showMobileMenu={showMobileMenu}/>
     </NavbarContainer>

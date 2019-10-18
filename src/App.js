@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useTransition, animated } from 'react-spring'
 
 import useRouter from './useRouter'
-import Navbar from './Components/Navbar'
+import Navbar from './Components/navbar/Navbar'
 import Home from './Pages/Home'
 import About from './Pages/About'
 import Contact from './Pages/Contact'
@@ -13,8 +13,9 @@ const Container = styled.div`
   padding: 10px 0 20px 0;
   margin: 2rem 5vw;
   width: 90vw;
-  position: fixed;
-  top: calc(15vh);
+  height: 125vh;
+  position: absolute;
+  top: 8.5rem;
   display: flex;
   justify-content: center;
 `

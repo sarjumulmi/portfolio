@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
@@ -6,7 +6,8 @@ import unicorn from '../images/unicorn.svg'
 import Navlinks from './Navlinks'
 
 const Navbar = styled.nav`
-  background: ${props => props.theme.bgDark};
+  position: sticky;
+  background-color: ${props => props.slide === '-15vh' ? props.theme.bgLight : props.theme.bgDark};
   color: white;
   display: flex;
   flex-wrap: nowrap;
@@ -18,6 +19,8 @@ const Navbar = styled.nav`
   /** prevent box shadow being cut-off by adding bottom margin & transition to no-margin after animation**/
   margin-bottom: ${props => props.showMobileMenu ? '0' : '18px'};
   transition: ${props => props.showMobileMenu ? '' : 'margin-bottom .1s ease-in .4s'};
+  transition: transform .4s ease-in-out .3s;
+  transform: ${props => `translateY(${props.slide})`}
   }
 
   .nav-links {
@@ -35,9 +38,9 @@ const Navbar = styled.nav`
         right: 0;
         width: 100%;
         height: 100%;
-        background: white;
+        background: transparent;
         border-radius: 50%;
-        z-index: -1;
+        z-index: -100;
         transition: all 0.3s ease-in;
       }
       &:hover {
@@ -46,6 +49,7 @@ const Navbar = styled.nav`
       &:hover:after {
         transform: scale(1.5);
         opacity: 0;
+        background: white;
       }
       a {
         display: flex;
@@ -105,8 +109,24 @@ const MobileNavButton = styled.div`
 `
 
 const DesktopNavbar = ({ showMobileMenu, onMobileButtonClick }) => {
+  const [scrollHeight, setScrollHeight] = useState('0')
+  const [slide, setSlide] = useState('0')
+
+  useEffect(() => {
+    window.onscroll = () => {
+      const currentScrollHeight = window.scrollY
+      console.log(currentScrollHeight, ' vs: ', scrollHeight, ' vs: ', slide)
+      if (currentScrollHeight > scrollHeight) {
+        setSlide('-15vh')
+      } else if (currentScrollHeight < scrollHeight && currentScrollHeight < 50) {
+        setSlide('0')
+      }
+      setScrollHeight(currentScrollHeight)
+    }
+  }, [scrollHeight, slide])
+
   return (
-    <Navbar showMobileMenu={showMobileMenu} >
+    <Navbar showMobileMenu={showMobileMenu} slide={slide}>
       <div className="navbar-left">
         <ul className="nav-links">
           <li className="nav-item">
