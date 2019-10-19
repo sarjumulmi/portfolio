@@ -9,6 +9,7 @@ import github from '../../images/github.svg'
 import linkedin from '../../images/linkedin.svg'
 import facebook from '../../images/facebook.svg'
 import instagram from '../../images/instagram.svg'
+import email from '../../images/email.svg'
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false)
@@ -55,13 +56,14 @@ const Navbar = () => {
             <li><a href="/portfolio"><Image src={linkedin} /></a></li>
             <li><a href="/portfolio"><Image src={facebook} /></a></li>
             <li><a href="/portfolio"><Image src={instagram} /></a></li>
+            <li><a href="mailto:mulmi.sarju@gmail.com"><Image src={email} /></a></li>
           </NavLinks>
           <BurgerMenuWrapper>
             <BurgerMenu isMobileMenuOpen={navbarOpen} handleBurgerClick={handleNavbar} />
           </BurgerMenuWrapper>
         </FlexContainer>
       </NavBar>
-      <CollapseMenu isMobileMenuOpen={navbarOpen} handleNavbar={handleNavbar} />
+      {navbarOpen && <CollapseMenu handleNavbar={handleNavbar} />}
     </div>
   )
 }
@@ -78,8 +80,8 @@ const NavBar = styled(animated.div)`
   width: 100%;
   top: 0;
   left: 0;
-  background: ${props => props.theme.bgDark}
-  z-index: 1;
+  background: ${props => props.theme.bgDarkGray};
+  z-index: 100;
 `
 
 const FlexContainer = styled.div`

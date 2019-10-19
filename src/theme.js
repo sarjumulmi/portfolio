@@ -1,4 +1,6 @@
 export const theme = {
-  bgDark: '#2d3436',
-  bgLight: '#E9EBED'
+  bgDarkGray: '#2d3436',
+  bgLightGray: '#E9EBED',
+  bgLimeGreen: '#E2EBE8',
+  bgLimeGreenDark: '#CADDD7'
 }

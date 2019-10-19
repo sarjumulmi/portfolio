@@ -26,5 +26,4 @@ const BrandWrapper = styled.a`
 const Image = styled.img`
   height: 7rem;
   margin: auto 0;
-  
 `
