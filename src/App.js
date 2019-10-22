@@ -10,14 +10,9 @@ import About from './Pages/About'
 import Contact from './Pages/Contact'
 
 const Container = styled.div`
-  padding: 2.5rem 4rem 20px 4rem;
   width: 100vw;
-  height: 125vh;
   position: absolute;
   top: 8.5rem;
-  display: flex;
-  justify-content: center;
-  background: ${props => props.theme.bgLimeGreen};
 `
 
 function App() {
