@@ -8,7 +8,7 @@ import facebook from '../../images/facebook.svg'
 import instagram from '../../images/instagram.svg'
 import email from '../../images/email.svg'
 
-const CollapseMenu = ({ handleNavbar }) => {
+const CollapseMenu = ({ handleNavbar, slide }) => {
   const open = useSpring({
     opacity: 1,
     transform: 'translate3d(0, 0, 0)',
@@ -22,10 +22,9 @@ const CollapseMenu = ({ handleNavbar }) => {
     to: { transform: 'translate3d(0, 0, 0)', opacity: 1 },
     delay: 500,
     config: config.wobbly,
-
   })
   return (
-    <CollapseWrapper style={open}>
+    <CollapseWrapper style={open} slide={slide}>
       <NavLinks style={socialAnimation}>
         <li><a href="/portfolio" onClick={handleNavbar}><Image src={github} /></a></li>
         <li><a href="/portfolio" onClick={handleNavbar}><Image src={linkedin} /></a></li>
@@ -44,7 +43,8 @@ const CollapseWrapper = styled(animated.div)`
   width: 8rem;
   position: fixed;
   top: 8.5rem;
-  right: 0;
+  transition: right 0.3s ease-out .3s;
+  right: ${props => props.slide === 0 ? 0 : '-8rem'};
   z-index: 100;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;

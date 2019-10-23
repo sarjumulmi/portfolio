@@ -10,9 +10,9 @@ import About from './Pages/About'
 import Contact from './Pages/Contact'
 
 const Container = styled.div`
-  width: 100vw;
   position: absolute;
   top: 8.5rem;
+  width: 100vw;
 `
 
 function App() {

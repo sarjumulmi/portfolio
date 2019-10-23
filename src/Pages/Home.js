@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Carousel from '../Components/Carousel'
 
 const Section = styled.section`
+  min-height: 100vh;
   width: 100%;
   background: white;
   display: flex;

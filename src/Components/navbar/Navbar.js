@@ -1,6 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import { useSpring, animated, config } from 'react-spring'
+import { throttle } from 'lodash'
+
+import { useThrottleFn } from 'react-use'
 
 import Brand from './Brand'
 import BurgerMenu from './BurgerMenu'
@@ -13,6 +16,29 @@ import email from '../../images/email.svg'
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false)
+  // for scrolling
+  let [pos, setPos] = useState(window.pageYOffset)
+  let [slide, setSlide] = useState(0)
+
+  const throttledHandleScroll = useRef(throttle((pos) => {
+    let temp = window.pageYOffset
+    setSlide(() => {
+      if (pos > temp) {
+        return 0
+      } else if (pos < temp ) {
+        return '-8.5rem'
+      }
+    })
+    setPos(temp)
+  }, 250))
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => throttledHandleScroll.current(pos))
+    return(() => {
+      window.removeEventListener('scroll', throttledHandleScroll.current)
+    })
+  })
+  //  end scrolling
 
   const handleNavbar = () => {
     setNavbarOpen(!navbarOpen)
@@ -48,8 +74,8 @@ const Navbar = () => {
 
   return (
     <div>
-      <NavBar style={barAnimation}>
-        <FlexContainer>
+      <NavBar style={barAnimation} slide={slide}>
+        <FlexContainer >
           <Brand />
           <NavLinks style={socialAnimation}>
             <li><a href="/portfolio"><Image src={github} /></a></li>
@@ -63,7 +89,7 @@ const Navbar = () => {
           </BurgerMenuWrapper>
         </FlexContainer>
       </NavBar>
-      {navbarOpen && <CollapseMenu handleNavbar={handleNavbar} />}
+      {navbarOpen && <CollapseMenu handleNavbar={handleNavbar} slide={slide} />}
     </div>
   )
 }
@@ -77,11 +103,12 @@ const Image = styled.img`
 
 const NavBar = styled(animated.div)`
   position: fixed;
-  width: 100%;
   top: 0;
-  left: 0;
+  width: 100%;
   background: ${props => props.theme.bgDarkGray};
   z-index: 100;
+  transition: top 0.4s ease-in-out .2s;
+  top: ${props => props.slide}
 `
 
 const FlexContainer = styled.div`
