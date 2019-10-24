@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import { useSpring, animated, config } from 'react-spring'
 import { throttle } from 'lodash'
 
-import { useThrottleFn } from 'react-use'
-
 import Brand from './Brand'
 import BurgerMenu from './BurgerMenu'
 import CollapseMenu from './CollapseMenu'
@@ -33,9 +31,10 @@ const Navbar = () => {
   }, 250))
 
   useEffect(() => {
-    window.addEventListener('scroll', () => throttledHandleScroll.current(pos))
+    const handleScroll = throttledHandleScroll.current
+    window.addEventListener('scroll', () => handleScroll(pos))
     return(() => {
-      window.removeEventListener('scroll', throttledHandleScroll.current)
+      window.removeEventListener('scroll', handleScroll)
     })
   })
   //  end scrolling
@@ -78,8 +77,8 @@ const Navbar = () => {
         <FlexContainer >
           <Brand />
           <NavLinks style={socialAnimation}>
-            <li><a href="/portfolio"><Image src={github} /></a></li>
-            <li><a href="/portfolio"><Image src={linkedin} /></a></li>
+            <li><a href="/portfolio/about"><Image src={github} /></a></li>
+            <li><a href="/portfolio/contact"><Image src={linkedin} /></a></li>
             <li><a href="/portfolio"><Image src={facebook} /></a></li>
             <li><a href="/portfolio"><Image src={instagram} /></a></li>
             <li><a href="mailto:mulmi.sarju@gmail.com"><Image src={email} /></a></li>
