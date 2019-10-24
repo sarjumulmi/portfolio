@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.js": "/portfolio/static/js/main.5e03a128.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.5e03a128.chunk.js.map",
+    "runtime-main.js": "/portfolio/static/js/runtime-main.021c856b.js",
+    "runtime-main.js.map": "/portfolio/static/js/runtime-main.021c856b.js.map",
+    "static/js/2.2e7ea3c4.chunk.js": "/portfolio/static/js/2.2e7ea3c4.chunk.js",
+    "static/js/2.2e7ea3c4.chunk.js.map": "/portfolio/static/js/2.2e7ea3c4.chunk.js.map",
+    "index.html": "/portfolio/index.html",
+    "precache-manifest.7e9b9e3a6a3f2cfb6d581e4e7291cd14.js": "/portfolio/precache-manifest.7e9b9e3a6a3f2cfb6d581e4e7291cd14.js",
+    "service-worker.js": "/portfolio/service-worker.js",
+    "static/media/email.svg": "/portfolio/static/media/email.02855f46.svg",
+    "static/media/facebook.svg": "/portfolio/static/media/facebook.1ce9fdbc.svg",
+    "static/media/github.svg": "/portfolio/static/media/github.21d620ef.svg",
+    "static/media/instagram.svg": "/portfolio/static/media/instagram.62f33dd3.svg",
+    "static/media/linkedin.svg": "/portfolio/static/media/linkedin.14f7b675.svg",
+    "static/media/unicorn.svg": "/portfolio/static/media/unicorn.b67c626a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.021c856b.js",
+    "static/js/2.2e7ea3c4.chunk.js",
+    "static/js/main.5e03a128.chunk.js"
+  ]
+}
